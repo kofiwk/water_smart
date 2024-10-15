@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:water_smart/dashboard.dart';
+import 'package:water_smart/models/drawer_item_model.dart';
+/* import 'package:water_smart/modules/crop_management/crop_management.dart';
+import 'package:water_smart/modules/farmer_management/farmer_management.dart';
+import 'package:water_smart/modules/market_access/market_access.dart';
+import 'package:water_smart/modules/monitoring_evaluation/monitoring_evaluation.dart';
+import 'package:water_smart/modules/soil_management/soil_management.dart';
+import 'package:water_smart/modules/training_extension/training_extension.dart';
+import 'package:water_smart/modules/water_management/water_management.dart'; */
+import 'package:water_smart/shared/drawer/drawer_tile.dart';
+
+class DRAWER extends StatefulWidget {
+  final void Function()? onTap;
+  const DRAWER({super.key, required this.onTap});
+
+  @override
+  State<DRAWER> createState() => _DRAWERState();
+}
+
+class _DRAWERState extends State<DRAWER> {
+  int _selectedIndex = 0;
+
+  /* final List<Widget> _page = [
+    Dashboard(),          // Index 0
+    WaterManagement(),     // Index 1
+    CropManagement(),      // Index 2
+    SoilManagement(),      // Index 3
+    MarketAccess(),        // Index 4
+    TrainingExtension(),   // Index 5
+    MonitoringEvaluation() // Index 6
+  ]; */
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        backgroundColor: const Color.fromRGBO(2, 34, 19, 1),
+        elevation: 0,
+        shape: const ContinuousRectangleBorder(),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'WaterSmart Ghana',
+                style: TextStyle(
+                    color: Color(0xFFF1F1F1),
+                    fontSize: 22,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 5),
+            for (int i = 0; i < DrawerItemModel.dummyList.length; i++)
+              GestureDetector(
+                onTap: () {
+                   /* Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => _page[_selectedIndex]),
+                  ); */
+                  setState(() {
+                    _selectedIndex = i;
+                  });
+                },
+                child: DrawerTile(
+                  text: DrawerItemModel.dummyList[i].title, 
+                  icon: DrawerItemModel.dummyList[i].iconData, 
+                  isSelected: i == _selectedIndex
+                ),
+              )
+          ],
+        ));
+  }
+}
