@@ -13,14 +13,14 @@ class PrimaryButton extends StatelessWidget {
       child: Container(
         height: 60,
         margin: const EdgeInsets.symmetric(horizontal: 25),
-        color:  Color.fromRGBO(39, 83, 71, 1),
+        color:  const Color.fromRGBO(2, 34, 19, 1),
         child: Center(
           child: Text(
             text,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'Montserrat',
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w100,
               fontSize: 16
             ),
           ),

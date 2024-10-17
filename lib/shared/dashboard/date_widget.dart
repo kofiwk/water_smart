@@ -44,7 +44,7 @@ class DateWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                width: 190,
+                width: 200,
                 height: 33,
                 padding: const EdgeInsets.symmetric(horizontal: 1.5),
                 margin: const EdgeInsets.symmetric(vertical: 1.2),
@@ -62,7 +62,7 @@ class DateWidget extends StatelessWidget {
                       color: Colors.black.withOpacity(.65),
                     ),
                     Text(
-                      'January 2024 - May 2024',
+                      'January 2024 - September 2024',
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 11,
