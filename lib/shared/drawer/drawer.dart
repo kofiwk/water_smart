@@ -15,7 +15,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final data = DrawerItemData().drawer;  // Access drawer list properly
+    final data = DrawerItemData().drawer; // Access drawer list properly
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ListView.builder(
@@ -24,16 +24,25 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           return GestureDetector(
             onTap: () {
               setState(() {
-                _selectedIndex = index;  // Use the index correctly
+                _selectedIndex = index; // Use the index correctly
               });
               if (widget.onTap != null) {
-                widget.onTap!();  // Call onTap callback if provided
+                widget.onTap!(); // Call onTap callback if provided
               }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return data[index].page;
+                  },
+                ),
+              );
             },
             child: DrawerTile(
-              text: data[index].title,  // Use the data list from DrawerItemData
+              text: data[index].title, // Use the data list from DrawerItemData
               icon: data[index].iconData,
-              isSelected: index == _selectedIndex,  // Use index to check selection
+              isSelected:
+                  index == _selectedIndex, // Use index to check selection
             ),
           );
         },
