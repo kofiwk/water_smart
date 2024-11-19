@@ -37,7 +37,7 @@ class _RegisterState extends State<Register> {
         builder: (context) => const AlertDialog(
           title: Text(
             "Passwords don't match!",
-            style: TextStyle(fontFamily: 'Poppins'),
+            style: TextStyle(fontFamily: 'Montserrat'),
           ),
         )
       );
@@ -151,29 +151,31 @@ class _RegisterState extends State<Register> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.black),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: TextField(
-                        controller: confirmPasswordController,
-                        style: const TextStyle(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: TextField(
+                      controller: confirmPasswordController,
+                      style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Confirm Password',
+                        hintStyle: TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                        ),
-                        decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Confirm Password',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            )),
+                        )
                       ),
-                    )),
+                    ),
+                  )
+                ),
               ),
               const SizedBox(height: 10),
               PrimaryButton(
