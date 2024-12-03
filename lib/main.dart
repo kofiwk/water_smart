@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:water_smart/dashboard.dart';
 import 'package:water_smart/firebase_options.dart';
-import 'package:water_smart/login.dart';
 import 'package:water_smart/services/auth/auth_gate.dart';
 
 void main() async {

@@ -47,7 +47,7 @@ class WaterCard extends StatelessWidget {
             ],
           ),
           Text(
-            '$amount',
+            amount,
             style: const TextStyle(
               fontFamily: 'Montserrat',
               fontSize: 27,

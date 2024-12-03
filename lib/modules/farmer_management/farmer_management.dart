@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:water_smart/modules/farmer_management/widgets/appbar.dart';
 import 'package:water_smart/shared/appbar/appbar_widget.dart';
 import 'package:water_smart/shared/dashboard/dashboard_content.dart';
 /* import 'package:water_smart/shared/cards/kpi_cards.dart'; */
@@ -99,15 +100,14 @@ class _DashboardState extends State<FarmerManagement> {
             Expanded(
               flex: 7,
               child: Column(
-                children: [
-                  const AppbarWidget(),
-                   Container(
+               children: [
+                 const FarmerAppBar(),
+                  Container(
                     height: 1.2,
                     width: double.infinity,
                     color: Colors.grey.withOpacity(.3),
                   ),
-                  const Expanded(child: DashboardContent())
-                ],
+               ],
               ),
               
             ),
