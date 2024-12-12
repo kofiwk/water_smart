@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:water_smart/api_service.dart';
 import 'package:water_smart/models/farmers_model.dart';
 import 'package:water_smart/modules/farmer_management/widgets/appbar.dart';
-import 'package:water_smart/shared/appbar/appbar_widget.dart';
-import 'package:water_smart/shared/dashboard/dashboard_content.dart';
 import 'package:water_smart/shared/drawer/drawer.dart';
 
 class FarmerManagement extends StatefulWidget {

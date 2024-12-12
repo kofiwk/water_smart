@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:water_smart/firebase_options.dart';
 import 'package:water_smart/services/auth/auth_gate.dart';
+import 'package:water_smart/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'WaterSmart Ghana',
-      home: AuthGate(),
       debugShowCheckedModeBanner: false,
     );
   }

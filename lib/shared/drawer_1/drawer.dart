@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:water_smart/shared/drawer/drawer_item_data.dart';
 import 'package:water_smart/shared/drawer/drawer_tile.dart';
-import 'package:go_router/go_router.dart';
 
 class DrawerWidget extends StatefulWidget {
   final void Function()? onTap;
@@ -16,7 +15,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final data = DrawerItemData().drawer;
+    final data = DrawerItemData().drawer; // Access drawer list properly
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ListView.builder(
@@ -24,20 +23,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              if (_selectedIndex != index) {
-                  setState(() {
-                  _selectedIndex = index;
-                });
-              }
+              setState(() {
+                _selectedIndex = index; // Use the index correctly
+              });
               if (widget.onTap != null) {
-                widget.onTap!();
+                widget.onTap!(); // Call onTap callback if provided
               }
-              Future.microtask(()=> context.go(data[index].route)); // Navigate with go_router
+              /* Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return data[index].page;
+                  },
+                ),
+              ); */
             },
             child: DrawerTile(
-              text: data[index].title,
+              text: data[index].title, // Use the data list from DrawerItemData
               icon: data[index].iconData,
-              isSelected: index == _selectedIndex,
+              isSelected:
+                  index == _selectedIndex, // Use index to check selection
             ),
           );
         },
