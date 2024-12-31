@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:water_smart/api_service.dart';
 import 'package:water_smart/models/farmers_model.dart';
 import 'package:water_smart/modules/farmer_management/widgets/appbar.dart';
 import 'package:water_smart/shared/drawer/drawer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FarmerManagement extends StatefulWidget {
   const FarmerManagement({super.key});
@@ -20,7 +20,26 @@ class _FarmerManagementState extends State<FarmerManagement> {
   @override
   void initState() {
     super.initState();
-    futureFarmers = ApiService().fetchFarmers(); // Fetch farmers
+    futureFarmers = fetchFarmersFromFirestore();
+  }
+
+  Future<List<Farmer>> fetchFarmersFromFirestore() async {
+    try {
+      final QuerySnapshot snapshot = 
+        await FirebaseFirestore.instance.collection('farmers').get();
+
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return Farmer(
+          id: doc.id, 
+          name: data['name'] ?? '', 
+          location: data['location'] ?? '', 
+          contact: data['contact'] ?? ''
+        );
+      }).toList();
+    } catch (e) {
+      throw Exception('Failed to fetch farmers: $e');
+    }
   }
 
   @override
@@ -67,8 +86,8 @@ class _FarmerManagementState extends State<FarmerManagement> {
                         Container(
                           height: 1,
                           width: double.infinity,
-                          margin:
-                              const EdgeInsets.only(left: 30, right: 30, top: 22),
+                          margin: const EdgeInsets.only(
+                              left: 30, right: 30, top: 22),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(.12),
                             borderRadius: BorderRadius.circular(2),
@@ -108,15 +127,20 @@ class _FarmerManagementState extends State<FarmerManagement> {
                     child: FutureBuilder<List<Farmer>>(
                       future: futureFarmers, // Fetch farmers
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return const Center(
-                              child: CircularProgressIndicator()); // Loading state
+                              child:
+                                  CircularProgressIndicator()); // Loading state
                         } else if (snapshot.hasError) {
                           return Center(
-                              child: Text('Error: ${snapshot.error}')); // Error state
-                        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                              child: Text(
+                                  'Error: ${snapshot.error}')); // Error state
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
                           return const Center(
-                              child: Text('No farmers found.')); // No data state
+                              child:
+                                  Text('No farmers found.')); // No data state
                         } else {
                           return ListView.builder(
                             itemCount: snapshot.data!.length,

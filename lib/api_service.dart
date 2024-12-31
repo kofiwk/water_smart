@@ -1,4 +1,4 @@
-import 'dart:convert';
+/* import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:water_smart/models/farmers_model.dart';
 
@@ -13,7 +13,8 @@ class ApiService {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((data) => Farmer.fromJson(data)).toList();
     } else {
-      throw Exception('Failed to load farmers');
+      throw Exception('Failed to load farmers.');
     }
   }
 }
+ */

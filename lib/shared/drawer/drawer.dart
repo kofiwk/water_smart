@@ -12,32 +12,38 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     final data = DrawerItemData().drawer;
+
+     bool isSelected(DrawerItemModel item) {
+      final isSelected = GoRouter.of(context)
+              .routerDelegate
+              .currentConfiguration
+              .uri
+              .toString() ==
+          item.route;
+
+      return isSelected;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
+          final item = data[index];
           return GestureDetector(
             onTap: () {
-              if (_selectedIndex != index) {
-                  setState(() {
-                  _selectedIndex = index;
-                });
-              }
               if (widget.onTap != null) {
                 widget.onTap!();
               }
-              Future.microtask(()=> context.go(data[index].route)); // Navigate with go_router
+              Future.microtask(()=> context.go(item.route)); // Navigate with go_router
             },
             child: DrawerTile(
               text: data[index].title,
               icon: data[index].iconData,
-              isSelected: index == _selectedIndex,
+              isSelected:isSelected(item),
             ),
           );
         },
